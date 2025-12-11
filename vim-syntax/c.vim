@@ -3134,14 +3134,24 @@ syntax keyword usf_function usf_vstrcat
 
 " For some reason not by default
 syn keyword Constant INFINITY
-syn keyword SpecialChar PRIn64
-syn keyword SpecialChar PRIn32
+
+syn keyword SpecialChar PRIu64
+syn keyword SpecialChar PRIu32
+syn keyword SpecialChar PRIu16
+syn keyword SpecialChar PRIu8
 syn keyword SpecialChar PRId64
 syn keyword SpecialChar PRId32
-syn keyword SpecialChar SCNn64
-syn keyword SpecialChar SCNn32
+syn keyword SpecialChar PRId16
+syn keyword SpecialChar PRId8
+
+syn keyword SpecialChar SCNu64
+syn keyword SpecialChar SCNu32
+syn keyword SpecialChar SCNu16
+syn keyword SpecialChar SCNu8
 syn keyword SpecialChar SCNd64
 syn keyword SpecialChar SCNd32
+syn keyword SpecialChar SCNd16
+syn keyword SpecialChar SCNd8
 
 " Default highlighting
 if version >= 508 || !exists("did_c_opengl_syntax_inits")
