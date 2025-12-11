@@ -3052,15 +3052,38 @@ syntax keyword usf_function usf_ftob
 
 syntax keyword usf_function usf_elapsedtimes
 syntax keyword usf_function usf_elapsedtimens
+syntax keyword usf_keyword USF_SWAP
+syntax keyword usf_keyword USF_MAX
+syntax keyword usf_keyword USF_MIN
+syntax keyword usf_keyword USF_CLAMP
+syntax keyword usf_function usf_indi32cmp
+syntax keyword usf_function usf_indu32cmp
+syntax keyword usf_function usf_indi64cmp
+syntax keyword usf_function usf_indu64cmp
+syntax keyword usf_function usf_maxi32
+syntax keyword usf_function usf_maxu32
+syntax keyword usf_function usf_maxi64
+syntax keyword usf_function usf_maxu64
+syntax keyword usf_function usf_mini32
+syntax keyword usf_function usf_minu32
+syntax keyword usf_function usf_mini64
+syntax keyword usf_function usf_minu64
+syntax keyword usf_function usf_clampf
+syntax keyword usf_function usf_clampd
+syntax keyword usf_function usf_clampi32
+syntax keyword usf_function usf_clampu32
+syntax keyword usf_function usf_clampi64
+syntax keyword usf_function usf_clampu64
 
 syntax keyword usf_type usf_skipnode
 syntax keyword usf_type usf_skiplist
-syntax keyword usf_constant USF_SKIPLIST_HEADSIZE
+syntax keyword usf_constant USF_SKIPLIST_FRAMESIZE
 syntax keyword usf_function usf_newsk
 syntax keyword usf_function usf_skset
 syntax keyword usf_function usf_skget
 syntax keyword usf_function usf_skdel
 syntax keyword usf_function usf_freesk
+syntax keyword usf_function usf_freeskptr
 
 syntax keyword usf_type usf_data
 syntax keyword usf_constant USFNULL
@@ -3108,6 +3131,17 @@ syntax keyword usf_function usf_sreplace
 syntax keyword usf_function usf_scsplit
 syntax keyword usf_function usf_strcat
 syntax keyword usf_function usf_vstrcat
+
+" For some reason not by default
+syn keyword Constant INFINITY
+syn keyword SpecialChar PRIn64
+syn keyword SpecialChar PRIn32
+syn keyword SpecialChar PRId64
+syn keyword SpecialChar PRId32
+syn keyword SpecialChar SCNn64
+syn keyword SpecialChar SCNn32
+syn keyword SpecialChar SCNd64
+syn keyword SpecialChar SCNd32
 
 " Default highlighting
 if version >= 508 || !exists("did_c_opengl_syntax_inits")
