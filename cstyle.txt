@@ -1,0 +1,52 @@
+lzg's C coding style (updated 2026-01-14)
+
+Project structure
+	README
+	Makefile (or other build tools)
+	src/
+		.c source files
+	include/
+		.h header files
+	obj/
+		.o object files
+
+File layout
+	.c source files
+		#include "$@.h"
+		Global variables
+		Private function prototypes (limited to this file's scope)
+		Function declaration (same order as their prototypes)
+
+	.h header files
+		Include guard
+		#include dependencies
+		#define macroes
+		typedef types
+		extern global variables
+		Public function prototypes (global scope)
+
+C syntax (C23)
+	Always use /* ... */ comments, never // ...
+	Prefer #ifndef-style include guards
+	Function prototypes' parameters should match the names in their implementation
+
+	Always use exact-width integer and floating point types
+	Use <inttypes.h> print macroes for printing these types
+	Do not use C99 bool types, use signed integers instead
+
+	Do not declare and initialize variables on the same line, except for compound literals
+	Prefer declaring variables immediately prior to their usage
+	Prefer assigning inside expressions unless it becomes hard to understand
+
+	'{' on same line, while '}' is on own line
+	Prefer to omit blocks (and merge everything on one line) in the case of a single expression
+
+	Breaking expressions on multiple lines adds one to the indentation level
+	Macroes and preprocessor directives always start at indentation level 0
+
+	Pointer types have the star ('*') adjacent to the variable name.
+	Typedefs are in CamelCase
+	Functions are in snake_case, with the first word being the namespace
+	Macroes are in MACRO_CASE, and should be undef'd as soon as their lifetime ends to avoid pollution.
+
+All integer and floating point types should be exact-width (uintN_t, intN_t) or a typedef thereof (iN, uN)
