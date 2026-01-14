@@ -48,5 +48,3 @@ C syntax (C23)
 	Typedefs are in CamelCase
 	Functions are in snake_case, with the first word being the namespace
 	Macroes are in MACRO_CASE, and should be undef'd as soon as their lifetime ends to avoid pollution.
-
-All integer and floating point types should be exact-width (uintN_t, intN_t) or a typedef thereof (iN, uN)
