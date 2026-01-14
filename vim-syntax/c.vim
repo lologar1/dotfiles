@@ -46,6 +46,7 @@ syntax keyword glConstant GL_SHORT
 syntax keyword glConstant GL_UNSIGNED_SHORT
 syntax keyword glConstant GL_INT
 syntax keyword glConstant GL_UNSIGNED_INT
+syntax keyword glConstant GL_HALF_FLOAT
 syntax keyword glConstant GL_FLOAT
 syntax keyword glConstant GL_DOUBLE
 syntax keyword glConstant GL_2_BYTES
@@ -3050,16 +3051,18 @@ syntax keyword usf_function usf_freetxt
 syntax keyword usf_function usf_btof
 syntax keyword usf_function usf_ftob
 
+syntax keyword usf_function usf_strhash
+syntax keyword usf_function usf_hash
 syntax keyword usf_function usf_elapsedtimes
 syntax keyword usf_function usf_elapsedtimens
 syntax keyword usf_keyword USF_SWAP
 syntax keyword usf_keyword USF_MAX
 syntax keyword usf_keyword USF_MIN
 syntax keyword usf_keyword USF_CLAMP
-syntax keyword usf_function usf_indi32cmp
-syntax keyword usf_function usf_indu32cmp
-syntax keyword usf_function usf_indi64cmp
-syntax keyword usf_function usf_indu64cmp
+syntax keyword usf_function usf_indcmpi32
+syntax keyword usf_function usf_indcmpu32
+syntax keyword usf_function usf_indcmpi64
+syntax keyword usf_function usf_indcmpu64
 syntax keyword usf_function usf_maxi32
 syntax keyword usf_function usf_maxu32
 syntax keyword usf_function usf_maxi64
@@ -3068,8 +3071,8 @@ syntax keyword usf_function usf_mini32
 syntax keyword usf_function usf_minu32
 syntax keyword usf_function usf_mini64
 syntax keyword usf_function usf_minu64
-syntax keyword usf_function usf_clampf
-syntax keyword usf_function usf_clampd
+syntax keyword usf_function usf_clampf32
+syntax keyword usf_function usf_clampf64
 syntax keyword usf_function usf_clampi32
 syntax keyword usf_function usf_clampu32
 syntax keyword usf_function usf_clampi64
@@ -3079,6 +3082,7 @@ syntax keyword usf_type usf_skipnode
 syntax keyword usf_type usf_skiplist
 syntax keyword usf_constant USF_SKIPLIST_FRAMESIZE
 syntax keyword usf_function usf_newsk
+syntax keyword usf_function usf_newsk_ts
 syntax keyword usf_function usf_skset
 syntax keyword usf_function usf_skget
 syntax keyword usf_function usf_skdel
@@ -3097,24 +3101,28 @@ syntax keyword usf_type usf_hashmap
 syntax keyword usf_constant USF_HASHMAP_DEFAULTSIZE
 syntax keyword usf_constant USF_HASHMAP_RESIZE_MULTIPLIER
 syntax keyword usf_function usf_newhm
+syntax keyword usf_function usf_newhm_ts
+syntax keyword usf_function usf_newhmsz
+syntax keyword usf_function usf_newhmsz_ts
 syntax keyword usf_function usf_strhmput
 syntax keyword usf_function usf_inthmput
 syntax keyword usf_function usf_strhmget
 syntax keyword usf_function usf_inthmget
 syntax keyword usf_function usf_strhmdel
 syntax keyword usf_function usf_inthmdel
-syntax keyword usf_function usf_resizestrhm
-syntax keyword usf_function usf_resizeinthm
+syntax keyword usf_function usf_strhmnext
+syntax keyword usf_function usf_inthmnext
 syntax keyword usf_function usf_freestrhm
 syntax keyword usf_function usf_freestrhmptr
-syntax keyword usf_function usf_freehm
-syntax keyword usf_function usf_freehmptr
-syntax keyword usf_function usf_strhash
-syntax keyword usf_function usf_hash
+syntax keyword usf_function usf_freeinthm
+syntax keyword usf_function usf_freeinthmptr
+syntax keyword usf_function usf_resizestrhm
+syntax keyword usf_function usf_resizeinthm
 
 syntax keyword usf_type usf_queuenode
 syntax keyword usf_type usf_queue
 syntax keyword usf_function usf_newqueue
+syntax keyword usf_function usf_newqueue_ts
 syntax keyword usf_function usf_enqueue
 syntax keyword usf_function usf_dequeue
 syntax keyword usf_function usf_freequeue
@@ -3152,6 +3160,27 @@ syn keyword SpecialChar SCNd64
 syn keyword SpecialChar SCNd32
 syn keyword SpecialChar SCNd16
 syn keyword SpecialChar SCNd8
+
+syn keyword StorageClass u64
+syn keyword StorageClass u32
+syn keyword StorageClass u16
+syn keyword StorageClass u8
+
+syn keyword StorageClass i64
+syn keyword StorageClass i32
+syn keyword StorageClass i16
+syn keyword StorageClass i8
+
+syn keyword StorageClass f64
+syn keyword StorageClass f32
+
+syn keyword StorageClass pthread_mutex_t
+
+syntax keyword usf_function usf_malloc
+syntax keyword usf_function usf_calloc
+syntax keyword usf_function usf_realloc
+syntax keyword usf_function usf_alloca
+syntax keyword usf_function usf_free
 
 " Default highlighting
 if version >= 508 || !exists("did_c_opengl_syntax_inits")
