@@ -1,42 +1,6 @@
 " Vim syntax file
-" Language:     C OpenGL
-" Maintainer:   Andreeshchev Eugene <admix@pisem.net>
-" Version:      1.5
-" Last Change:  2007-08-30
-
-" Usage: 
-"
-"   Source it from somewhere
-"
-" Changelog: 
-"
-"   2007-08-30 (v1.5) 
-"       * Added OpenGL ES 2.0 and EGL symbols
-"          (thanks to Simon Hosie [sh1 at broadcom dot com]).
-"       * Added following variables: 
-"           c_opengl_no_gles2 - turns off GLES2 highlighting
-"           c_opengl_no_egl - turns off EGL highlighting
-"       * Now version numbering is a bit screwed =)
-"
-"   2003-11-07 (v1.4.1) 
-"       * Added GLUT support
-"          (thanks to Mathias Gumz [gumzat at cs dot uni-magdeburg dot de]).
-"       * Added following variables: 
-"           c_opengl_no_glu     - turns off GLU highlighting
-"           c_opengl_no_glut    - turns off GLUT highlighting
-"           c_opengl_no_ext_arb - turns off ARB extensions highlighting
-"
-"   2003-10-31 (v1.4) 
-"       * Updated to OpenGL 1.4 ARB extensions for OpenGL Shading Language
-"          (thanks to Eric Boumaour [zongo at nekeme dot net]).
-"       * Now version number match OpenGL version.
-"
-"   2003-08-29 (v0.1)
-"       Initial release
-"
-" TODO: add support for vendor specific extensions (NVidia and ATI at least)
-"
-
+" Merged Andreeshchev Eugene (admix@pisem.net)'s OpenGL syntax highlighting
+" and my (lzg)'s usflib2 syntax highlighting (at bottom)
 
 " gl.h
 " Data types {{{
@@ -69,7 +33,7 @@ syntax keyword glType GLclampf
 syntax keyword glType GLdouble
 syntax keyword glType GLclampd
 " }}}
- 
+"
 " Constants {{{
 
   syntax keyword glConstant GL_FALSE
@@ -3034,7 +2998,25 @@ if !exists ("c_opengl_no_egl")
 " }}}
 endif
 
-" usflib2 highlighting :)
+" Default highlighting
+if version >= 508 || !exists("did_c_opengl_syntax_inits")
+  if version < 508
+    let did_c_opengl_syntax_inits = 1
+    command -nargs=+ HiLink hi link <args>
+  else
+    command -nargs=+ HiLink hi def link <args>
+  endif
+  HiLink glType                Type
+  " HiLink glFunction            Function
+  highlight glFunction ctermfg=252
+  " HiLink glConstant            Constant
+  highlight glConstant ctermfg=182
+  delcommand HiLink
+endif
+
+" usflib2 highlighting
+
+" usfdynarr (deprecated)
 syntax keyword usf_type usf_dynarr
 syntax keyword usf_function usf_newda
 syntax keyword usf_function usf_arrtodyn
@@ -3043,14 +3025,16 @@ syntax keyword usf_function usf_daget
 syntax keyword usf_function usf_daset
 syntax keyword usf_function usf_freeda
 
+" usfio
 syntax keyword usf_function usf_ftos
-syntax keyword usf_function usf_ftost
-syntax keyword usf_function usf_printtxt
 syntax keyword usf_function usf_ftot
-syntax keyword usf_function usf_freetxt
-syntax keyword usf_function usf_btof
+syntax keyword usf_function usf_ftost
 syntax keyword usf_function usf_ftob
+syntax keyword usf_function usf_btof
+syntax keyword usf_function usf_printtxt
+syntax keyword usf_function usf_freetxt
 
+" usfmath
 syntax keyword usf_function usf_strhash
 syntax keyword usf_function usf_hash
 syntax keyword usf_function usf_elapsedtimes
@@ -3060,27 +3044,28 @@ syntax keyword usf_keyword USF_MAX
 syntax keyword usf_keyword USF_MIN
 syntax keyword usf_keyword USF_CLAMP
 syntax keyword usf_function usf_indcmpi32
-syntax keyword usf_function usf_indcmpu32
 syntax keyword usf_function usf_indcmpi64
+syntax keyword usf_function usf_indcmpu32
 syntax keyword usf_function usf_indcmpu64
 syntax keyword usf_function usf_maxi32
-syntax keyword usf_function usf_maxu32
 syntax keyword usf_function usf_maxi64
+syntax keyword usf_function usf_maxu32
 syntax keyword usf_function usf_maxu64
 syntax keyword usf_function usf_mini32
-syntax keyword usf_function usf_minu32
 syntax keyword usf_function usf_mini64
+syntax keyword usf_function usf_minu32
 syntax keyword usf_function usf_minu64
 syntax keyword usf_function usf_clampf32
 syntax keyword usf_function usf_clampf64
 syntax keyword usf_function usf_clampi32
-syntax keyword usf_function usf_clampu32
 syntax keyword usf_function usf_clampi64
+syntax keyword usf_function usf_clampu32
 syntax keyword usf_function usf_clampu64
 
+" usfskiplist
+syntax keyword usf_constant USF_SKIPLIST_FRAMESIZE
 syntax keyword usf_type usf_skipnode
 syntax keyword usf_type usf_skiplist
-syntax keyword usf_constant USF_SKIPLIST_FRAMESIZE
 syntax keyword usf_function usf_newsk
 syntax keyword usf_function usf_newsk_ts
 syntax keyword usf_function usf_skset
@@ -3089,6 +3074,7 @@ syntax keyword usf_function usf_skdel
 syntax keyword usf_function usf_freesk
 syntax keyword usf_function usf_freeskptr
 
+" usfdata
 syntax keyword usf_type usf_data
 syntax keyword usf_constant USFNULL
 syntax keyword usf_constant USFTRUE
@@ -3097,6 +3083,7 @@ syntax keyword usf_keyword USFDATAU
 syntax keyword usf_keyword USFDATAI
 syntax keyword usf_keyword USFDATAD
 
+" usfhashmap
 syntax keyword usf_type usf_hashmap
 syntax keyword usf_constant USF_HASHMAP_DEFAULTSIZE
 syntax keyword usf_constant USF_HASHMAP_RESIZE_MULTIPLIER
@@ -3119,6 +3106,7 @@ syntax keyword usf_function usf_freeinthmptr
 syntax keyword usf_function usf_resizestrhm
 syntax keyword usf_function usf_resizeinthm
 
+" usfqueue
 syntax keyword usf_type usf_queuenode
 syntax keyword usf_type usf_queue
 syntax keyword usf_function usf_newqueue
@@ -3128,6 +3116,7 @@ syntax keyword usf_function usf_dequeue
 syntax keyword usf_function usf_freequeue
 syntax keyword usf_function usf_freequeueptr
 
+" usfstring
 syntax keyword usf_function usf_indstrcmp
 syntax keyword usf_function usf_indstrlen
 syntax keyword usf_function usf_sstartswith
@@ -3140,7 +3129,25 @@ syntax keyword usf_function usf_scsplit
 syntax keyword usf_function usf_strcat
 syntax keyword usf_function usf_vstrcat
 
-" For some reason not by default
+" usfstd
+syn keyword StorageClass u64
+syn keyword StorageClass u32
+syn keyword StorageClass u16
+syn keyword StorageClass u8
+syn keyword StorageClass i64
+syn keyword StorageClass i32
+syn keyword StorageClass i16
+syn keyword StorageClass i8
+syn keyword StorageClass f64
+syn keyword StorageClass f32
+
+syntax keyword usf_function usf_malloc
+syntax keyword usf_function usf_calloc
+syntax keyword usf_function usf_realloc
+syntax keyword usf_function usf_alloca
+syntax keyword usf_function usf_free
+
+" General C stuff
 syn keyword Constant INFINITY
 
 syn keyword SpecialChar PRIu64
@@ -3161,46 +3168,9 @@ syn keyword SpecialChar SCNd32
 syn keyword SpecialChar SCNd16
 syn keyword SpecialChar SCNd8
 
-syn keyword StorageClass u64
-syn keyword StorageClass u32
-syn keyword StorageClass u16
-syn keyword StorageClass u8
-
-syn keyword StorageClass i64
-syn keyword StorageClass i32
-syn keyword StorageClass i16
-syn keyword StorageClass i8
-
-syn keyword StorageClass f64
-syn keyword StorageClass f32
-
 syn keyword StorageClass pthread_mutex_t
 
-syntax keyword usf_function usf_malloc
-syntax keyword usf_function usf_calloc
-syntax keyword usf_function usf_realloc
-syntax keyword usf_function usf_alloca
-syntax keyword usf_function usf_free
-
-" Default highlighting
-if version >= 508 || !exists("did_c_opengl_syntax_inits")
-  if version < 508
-    let did_c_opengl_syntax_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
-  HiLink glType                Type
-  " HiLink glFunction            Function
-  highlight glFunction ctermfg=252
-  " HiLink glConstant            Constant
-  highlight glConstant ctermfg=182
-
-  highlight usf_function cterm=italic
-  highlight usf_type ctermfg=120
-  highlight usf_constant ctermfg=013 cterm=italic
-  highlight usf_keyword ctermfg=011
-  delcommand HiLink
-endif
-
-" vim: fdm=marker:
+highlight usf_function cterm=italic
+highlight usf_type ctermfg=120
+highlight usf_constant ctermfg=013 cterm=italic
+highlight usf_keyword ctermfg=011
