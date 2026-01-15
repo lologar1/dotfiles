@@ -16,12 +16,12 @@ File layout
 		Public global variables
 		Private global variables
 		Private function prototypes (limited to this file's scope)
-		Function declaration (same order as their prototypes)
+		Function declarations (same order as their prototypes)
 
 	.h header files
 		Include guard
 		#include dependencies
-		#define macroes
+		#define macros
 		typedef types
 		extern global variables
 		Public function prototypes (global scope)
@@ -32,7 +32,7 @@ C syntax (C23)
 	Function prototypes' parameters should match the names in their implementation
 
 	Always use exact-width integer and floating point types
-	Use <inttypes.h> print macroes for printing these types
+	Use <inttypes.h> print macros for printing these types
 	Do not use C99 bool types, use signed integers instead
 
 	Do not declare and initialize variables on the same line, except for compound literals
@@ -40,12 +40,14 @@ C syntax (C23)
 	Prefer assigning inside expressions unless it becomes hard to understand
 
 	'{' on same line, while '}' is on own line
-	Prefer to omit blocks (and merge everything on one line) in the case of a single expression
+	Prefer to omit blocks (and merge everything on one line) in the case of a single, short expression
 
 	Breaking expressions on multiple lines adds one to the indentation level
 	Macroes and preprocessor directives always start at indentation level 0
 
 	Pointer types have the star ('*') adjacent to the variable name.
+	Casts should have a space between the type and the castee.
+
 	Typedefs are in CamelCase
 	Functions are in snake_case, with the first word being the namespace
 	Macroes are in MACRO_CASE, and should be undef'd as soon as their lifetime ends to avoid pollution.
