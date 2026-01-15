@@ -13,7 +13,8 @@ Project structure
 File layout
 	.c source files
 		#include "$@.h"
-		Global variables
+		Public global variables
+		Private global variables
 		Private function prototypes (limited to this file's scope)
 		Function declaration (same order as their prototypes)
 
