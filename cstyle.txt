@@ -1,53 +1,75 @@
-lzg's C coding style (updated 2026-01-14)
+lzg's C coding style (updated 2026-01-26)
 
 Project structure
-	README
-	Makefile (or other build tools)
+	README (optional)
+	Makefile
 	src/
 		.c source files
 	include/
 		.h header files
 	obj/
 		.o object files
+	usflib2/
 
 File layout
 	.c source files
-		#include "$@.h"
-		Public global variables
-		Private global variables
-		Private function prototypes (limited to this file's scope)
-		Function declarations (same order as their prototypes)
+		#include "filename.h"											| Single include + newline
+		#define (global) private macros									| In UPPERCASE; see annex 1.1
+		Const public global variables									| In UPPERCASE
+		Public global variables											| Trailing _
+		Const private global variables									| static + UPPERCASE
+		Private global variables										| static + trailing _
+		Private function prototypes										| static + prefix_camelCase
+		Function declarations (public then private)						| In prefix_camelCase; see annex 1.2
 
 	.h header files
-		Include guard
-		#include dependencies
-		#define macros
-		typedef types
-		extern global variables
-		Public function prototypes (global scope)
+		Include guard													| Prefer #ifndef
+		#include dependencies											| System, usflib, program
+		#define public macros											| In UPPERCASE; see annex 1.1
 
-C syntax (C23)
-	Always use /* ... */ comments, never // ...
-	Prefer #ifndef-style include guards
-	Function prototypes' parameters should match the names in their implementation
+		typedef types													| camelCase for user-defined types
+		extern global variables											| Trailing _
+		Public function prototypes (global scope)						| prefix_camelCase
 
-	Always use exact-width integer and floating point types
-	Use <inttypes.h> print macros for printing these types
-	Do not use C99 bool types, use signed integers instead
+Annex - Further specification
+	1.0 - Comments
+		Always use multiline (/* ... */) comments, never // ...
 
-	Do not declare and initialize variables on the same line, except for compound literals
-	Prefer declaring variables immediately prior to their usage
-	Prefer assigning inside expressions unless it becomes hard to understand
+	1.1 - Macros
+		Macros are always in UPPERCASE.
+		Macro arguments should be prefixed with an underscore.
+		Local macros which take arguments should be prefixed with an underscore.
+		Local macros should be #undef'd when they are no longer used.
 
-	'{' on same line, while '}' is on own line
-	Prefer to omit blocks (and merge everything on one line) in the case of a single, short expression
+	1.2 - Functions
+		Functions are in prefix_camelCase, with prefix being the namespace.
+		Parameter names should be the same in the prototype and the implementation.
+		Functions should begin with a documentation comment ("docstring") followed by a newline.
 
-	Breaking expressions on multiple lines adds one to the indentation level
-	Macroes and preprocessor directives always start at indentation level 0
+	1.3 - Variables
+		Global variables must end with a trailing _
+		Constant variables are in UPPERCASE.
+		Typedefs and tags of user-defined types are in PascalCase.
+		Local variables are in camelCase, but prefer lowercase when possible.
 
-	Pointer types have the star ('*') adjacent to the variable name.
-	Casts should have a space between the type and the castee.
+	1.4 - Types
+		Always use exact-width integer and floating point types.
+		Do not use C99 bool types; use a signed 32-bit integer instead.
+		Sizes and counts should be represented by a 64-bit unsigned integer.
+		Prefer 64 bits over 32.
+		Prefer unsigned over signed.
 
-	Typedefs are in CamelCase
-	Functions are in snake_case, with the first word being the namespace
-	Macroes are in MACRO_CASE, and should be undef'd as soon as their lifetime ends to avoid pollution.
+	1.5 - Declarations
+		Do not declare and initialize variables in one statement, except for compound literals, globals & statics
+		Declare variables close to their first usage.
+		Prefer assignment inside expressions unless it harms readability.
+
+	1.6 - Blocks
+		'{' is on same line, while '}' is on its own line.
+		Omit blocks in the case of a single, short expression. (e.g. if(cond) return 0;)
+
+	1.7 - Whitespace
+		Breaking expressions onto multiple lines add one to the indentation level.
+		Macros and preprocessor directives start at indentation level 0.
+		Pointer types have the '*' star character adjacent to the variable name. (e.g. u64 *arraysz;)
+		Casts should have a space between the type and the castee. (e.g. (f32) (xoffset))

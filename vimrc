@@ -72,10 +72,6 @@ set relativenumber
 "Let netrw show nu+rnu
 let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 
-"Highlight in red trailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
 "4 columns on automatic indentation
 set shiftwidth=4
 
@@ -90,7 +86,7 @@ set colorcolumn=114
 hi ColorColumn ctermbg=8
 
 "Display status line always
-set laststatus=2
+"set laststatus=2
 
 "Use full file path
 set statusline=%f
@@ -106,14 +102,25 @@ highlight StatusLineNC ctermfg=8 ctermbg=15
 set splitright   " Automatically open vertical splits to the right
 set splitbelow   " Automatically open horizontal splits below
 
-"Remap split naviation to just control+hjkl
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 "Make C-l work in netrw
 "autocmd FileType netrw nnoremap <buffer> <silent> <C-l> <C-w>l
 
 "Separator between splits
 set fillchars=vert:\|
+
+" Enable list mode to show hidden characters
+"set list
+
+" Set custom characters for tabs and trailing spaces
+" trail: whitespace at end of line
+" tab: first char is for the start of the tab, second is for following space
+set listchars=tab:›\ ,trail:·
+
+" Highlight trailing whitespace in red
+highlight TrailingWhitespace ctermbg=red guibg=red
+match TrailingWhitespace /\s\+$/
+
+" Highlight all tabs in gray
+highlight TabChar ctermbg=238
+2match TabChar /\t/
+
