@@ -1,4 +1,4 @@
-lzg's C coding style (updated 2026-01-26)
+lzg's C23 coding style (updated 2026-01-26)
 
 Project structure
 	README (optional)
@@ -26,7 +26,6 @@ File layout
 		Include guard													| Prefer #ifndef
 		#include dependencies											| System, usflib, program
 		#define public macros											| In UPPERCASE; see annex 1.1
-
 		typedef types													| camelCase for user-defined types
 		extern global variables											| Trailing _
 		Public function prototypes (global scope)						| prefix_camelCase
