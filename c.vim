@@ -3075,8 +3075,9 @@ syntax keyword usf_function usf_newsk_ts
 syntax keyword usf_function usf_skset
 syntax keyword usf_function usf_skget
 syntax keyword usf_function usf_skdel
-syntax keyword usf_function usf_freesk
+syntax keyword usf_function usf_freeskfunc
 syntax keyword usf_function usf_freeskptr
+syntax keyword usf_function usf_freesk
 
 " usfdata
 syntax keyword usf_type usf_data
@@ -3103,10 +3104,12 @@ syntax keyword usf_function usf_strhmdel
 syntax keyword usf_function usf_inthmdel
 syntax keyword usf_function usf_strhmnext
 syntax keyword usf_function usf_inthmnext
-syntax keyword usf_function usf_freestrhm
+syntax keyword usf_function usf_freestrhmfunc
 syntax keyword usf_function usf_freestrhmptr
-syntax keyword usf_function usf_freeinthm
+syntax keyword usf_function usf_freestrhm
+syntax keyword usf_function usf_freeinthmfunc
 syntax keyword usf_function usf_freeinthmptr
+syntax keyword usf_function usf_freeinthm
 syntax keyword usf_function usf_resizestrhm
 syntax keyword usf_function usf_resizeinthm
 
@@ -3117,8 +3120,9 @@ syntax keyword usf_function usf_newqueue
 syntax keyword usf_function usf_newqueue_ts
 syntax keyword usf_function usf_enqueue
 syntax keyword usf_function usf_dequeue
-syntax keyword usf_function usf_freequeue
+syntax keyword usf_function usf_freequeuefunc
 syntax keyword usf_function usf_freequeueptr
+syntax keyword usf_function usf_freequeue
 
 " usfstring
 syntax keyword usf_function usf_indstrcmp
@@ -3169,6 +3173,7 @@ syntax keyword usf_function usf_listi16ins
 syntax keyword usf_function usf_listi16add
 syntax keyword usf_function usf_listi16get
 syntax keyword usf_function usf_listi16del
+syntax keyword usf_function usf_freelisti16func
 syntax keyword usf_function usf_freelisti16
 syntax keyword usf_function usf_newlisti32
 syntax keyword usf_function usf_newlisti32_ts
@@ -3179,6 +3184,7 @@ syntax keyword usf_function usf_listi32ins
 syntax keyword usf_function usf_listi32add
 syntax keyword usf_function usf_listi32get
 syntax keyword usf_function usf_listi32del
+syntax keyword usf_function usf_freelisti32func
 syntax keyword usf_function usf_freelisti32
 syntax keyword usf_function usf_newlisti64
 syntax keyword usf_function usf_newlisti64_ts
@@ -3189,6 +3195,7 @@ syntax keyword usf_function usf_listi64ins
 syntax keyword usf_function usf_listi64add
 syntax keyword usf_function usf_listi64get
 syntax keyword usf_function usf_listi64del
+syntax keyword usf_function usf_freelisti64func
 syntax keyword usf_function usf_freelisti64
 syntax keyword usf_function usf_newlistu8
 syntax keyword usf_function usf_newlistu8_ts
@@ -3199,6 +3206,7 @@ syntax keyword usf_function usf_listu8ins
 syntax keyword usf_function usf_listu8add
 syntax keyword usf_function usf_listu8get
 syntax keyword usf_function usf_listu8del
+syntax keyword usf_function usf_freelistu8func
 syntax keyword usf_function usf_freelistu8
 syntax keyword usf_function usf_newlistu16
 syntax keyword usf_function usf_newlistu16_ts
@@ -3209,6 +3217,7 @@ syntax keyword usf_function usf_listu16ins
 syntax keyword usf_function usf_listu16add
 syntax keyword usf_function usf_listu16get
 syntax keyword usf_function usf_listu16del
+syntax keyword usf_function usf_freelistu16func
 syntax keyword usf_function usf_freelistu16
 syntax keyword usf_function usf_newlistu32
 syntax keyword usf_function usf_newlistu32_ts
@@ -3219,6 +3228,7 @@ syntax keyword usf_function usf_listu32ins
 syntax keyword usf_function usf_listu32add
 syntax keyword usf_function usf_listu32get
 syntax keyword usf_function usf_listu32del
+syntax keyword usf_function usf_freelistu32func
 syntax keyword usf_function usf_freelistu32
 syntax keyword usf_function usf_newlistu64
 syntax keyword usf_function usf_newlistu64_ts
@@ -3229,6 +3239,7 @@ syntax keyword usf_function usf_listu64ins
 syntax keyword usf_function usf_listu64add
 syntax keyword usf_function usf_listu64get
 syntax keyword usf_function usf_listu64del
+syntax keyword usf_function usf_freelistu64func
 syntax keyword usf_function usf_freelistu64
 syntax keyword usf_function usf_newlistf32
 syntax keyword usf_function usf_newlistf32_ts
@@ -3239,6 +3250,7 @@ syntax keyword usf_function usf_listf32ins
 syntax keyword usf_function usf_listf32add
 syntax keyword usf_function usf_listf32get
 syntax keyword usf_function usf_listf32del
+syntax keyword usf_function usf_freelistf32func
 syntax keyword usf_function usf_freelistf32
 syntax keyword usf_function usf_newlistf64
 syntax keyword usf_function usf_newlistf64_ts
@@ -3249,6 +3261,7 @@ syntax keyword usf_function usf_listf64ins
 syntax keyword usf_function usf_listf64add
 syntax keyword usf_function usf_listf64get
 syntax keyword usf_function usf_listf64del
+syntax keyword usf_function usf_freelistf64func
 syntax keyword usf_function usf_freelistf64
 syntax keyword usf_function usf_newlistptr
 syntax keyword usf_function usf_newlistptr_ts
@@ -3259,6 +3272,7 @@ syntax keyword usf_function usf_listptrins
 syntax keyword usf_function usf_listptradd
 syntax keyword usf_function usf_listptrget
 syntax keyword usf_function usf_listptrdel
+syntax keyword usf_function usf_freelistptrfunc
 syntax keyword usf_function usf_freelistptr
 syntax keyword usf_function usf_newlist
 syntax keyword usf_function usf_newlist_ts
@@ -3269,9 +3283,11 @@ syntax keyword usf_function usf_listins
 syntax keyword usf_function usf_listadd
 syntax keyword usf_function usf_listget
 syntax keyword usf_function usf_listdel
+syntax keyword usf_function usf_freelistfunc
 syntax keyword usf_function usf_freelist
 
 " usfstd
+syntax keyword usf_keyword countof
 syntax keyword usf_keyword USF_EMPTY
 syn keyword Constant I8_MAX
 syn keyword Constant I8_MIN
@@ -3382,26 +3398,13 @@ syntax keyword usf_constant AESC_COLOR_FG_256
 syntax keyword usf_constant AESC_COLOR_BG_256
 syntax keyword usf_constant AESC_COLOR_FG_RGB
 syntax keyword usf_constant AESC_COLOR_BG_RGB
-syntax keyword usf_constant AESC_MODE_SET
-syntax keyword usf_constant AESC_MODE_RESET
-syntax keyword usf_constant AESC_MODE_MONOCHROME_40x25
-syntax keyword usf_constant AESC_MODE_COLOR_40x25
-syntax keyword usf_constant AESC_MODE_MONOCHROME_80x25
-syntax keyword usf_constant AESC_MODE_COLOR_80x25
-syntax keyword usf_constant AESC_MODE_4COLOR_320x200
-syntax keyword usf_constant AESC_MODE_MONOCHROME_320x200
-syntax keyword usf_constant AESC_MODE_MONOCHROME_640x200
-syntax keyword usf_constant AESC_MODE_LINEWRAPPING
-syntax keyword usf_constant AESC_MODE_COLOR_320x200
-syntax keyword usf_constant AESC_MODE_16COLOR_640x200
-syntax keyword usf_constant AESC_MODE_MONOCHROME_640x350
-syntax keyword usf_constant AESC_MODE_16COLOR_640x350
-syntax keyword usf_constant AESC_MODE_MONOCHROME_640x480
-syntax keyword usf_constant AESC_MODE_16COLOR_640x480
-syntax keyword usf_constant AESC_MODE_256COLOR_320x200
 
 " General C stuff
 syn keyword Constant INFINITY
+syn keyword Constant CLOCK_MONOTONIC
+syn keyword Constant CLOCK_REALTIME
+syn keyword Constant CLOCK_PROCESS_CPUTIME_ID
+syn keyword Constant CLOCK_THREAD_CPUTIME_ID
 
 syn keyword SpecialChar PRIu64
 syn keyword SpecialChar PRIu32

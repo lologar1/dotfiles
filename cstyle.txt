@@ -1,4 +1,4 @@
-lzg's C23 coding style (updated 2026-01-26)
+lzg's C23 coding style (updated 2026-01-31)
 
 Project structure
 	README (optional)
@@ -72,3 +72,12 @@ Annex - Further specification
 		Macros and preprocessor directives start at indentation level 0.
 		Pointer types have the '*' star character adjacent to the variable name. (e.g. u64 *arraysz;)
 		Casts should have a space between the type and the castee. (e.g. (f32) (xoffset))
+
+	1.8 - Qualifiers
+		Pointer function parameters of the same type which do not overlap should always be specified as restrict.
+		Read-only function parameters should always be specified as const.
+			Note: the C23 standard disallows implicit casting to const for more than the toplevel
+			indirection hierarchy although it should be permitted. Pending revision, do not attempt
+			to cast through this warning.
+
+			Instead, leave a marker in the form of /* __REVISE__ cstyle@1.8.1 */ for future revision.
