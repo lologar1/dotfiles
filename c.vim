@@ -3110,6 +3110,7 @@ syntax keyword usf_function usf_freestrhm
 syntax keyword usf_function usf_freeinthmfunc
 syntax keyword usf_function usf_freeinthmptr
 syntax keyword usf_function usf_freeinthm
+syntax keyword usf_function usf_hmclear
 syntax keyword usf_function usf_resizestrhm
 syntax keyword usf_function usf_resizeinthm
 
@@ -3138,6 +3139,44 @@ syntax keyword usf_function usf_strcat
 syntax keyword usf_function usf_vstrcat
 syntax keyword usf_function usf_supper
 syntax keyword usf_function usf_slower
+
+" usftime
+syn keyword StorageClass timespec
+syntax keyword usf_function usf_tsdiff
+
+" usfatomic
+syntax keyword usf_constant MEMORDER_RELAXED
+syntax keyword usf_constant MEMORDER_CONSUME
+syntax keyword usf_constant MEMORDER_ACQUIRE
+syntax keyword usf_constant MEMORDER_RELEASE
+syntax keyword usf_constant MEMORDER_ACQ_REL
+syntax keyword usf_constant MEMORDER_SEQ_CST
+syn keyword StorageClass atomic_i8
+syn keyword StorageClass atomic_i16
+syn keyword StorageClass atomic_i32
+syn keyword StorageClass atomic_i64
+syn keyword StorageClass atomic_u8
+syn keyword StorageClass atomic_u16
+syn keyword StorageClass atomic_u32
+syn keyword StorageClass atomic_u64
+syn keyword StorageClass atomic_f32
+syn keyword StorageClass atomic_f64
+syntax keyword usf_function usf_atmflagtry
+syntax keyword usf_function usf_atmflagclr
+syntax keyword usf_function usf_atminit
+syntax keyword usf_function usf_atmislockfree
+syntax keyword usf_function usf_atmmst
+syntax keyword usf_function usf_atmmld
+syntax keyword usf_function usf_atmxch
+syntax keyword usf_function usf_atmcmpxch_weak
+syntax keyword usf_function usf_atmcmpxch_strong
+syntax keyword usf_function usf_atmaddi
+syntax keyword usf_function usf_atmsubi
+syntax keyword usf_function usf_atmori
+syntax keyword usf_function usf_atmxori
+syntax keyword usf_function usf_atmandi
+syntax keyword usf_function usf_thrdfence
+syntax keyword usf_function usf_compilefence
 
 " usflist
 syntax keyword usf_type usf_listi8
@@ -3305,6 +3344,15 @@ syn keyword Constant U32_MAX
 syn keyword Constant U32_MIN
 syn keyword Constant U64_MAX
 syn keyword Constant U64_MIN
+syn keyword usf_constant I8
+syn keyword usf_constant I16
+syn keyword usf_constant I32
+syn keyword usf_constant I64
+syn keyword usf_constant U8
+syn keyword usf_constant U16
+syn keyword usf_constant U32
+syn keyword usf_constant U64
+syn keyword StorageClass usf_compatibility_int
 syn keyword StorageClass i8
 syn keyword StorageClass i16
 syn keyword StorageClass i32
@@ -3324,8 +3372,16 @@ syntax keyword usf_function strtoi32
 syntax keyword usf_function strtoi64
 syntax keyword usf_function strtou32
 syntax keyword usf_function strtou64
+syntax keyword usf_warning signed
+syntax keyword usf_warning unsigned
+syntax keyword usf_warning short
+syntax keyword usf_warning int
+syntax keyword usf_warning long
+syntax keyword usf_warning float
+syntax keyword usf_warning double
 
 " usfescape
+syntax keyword usf_constant AESC_ESCAPE
 syntax keyword usf_constant AESC_CURSOR_MOVE_HOME
 syntax keyword usf_constant AESC_CURSOR_MOVE
 syntax keyword usf_constant AESC_CURSOR_MOVE_UP
@@ -3399,7 +3455,46 @@ syntax keyword usf_constant AESC_COLOR_BG_256
 syntax keyword usf_constant AESC_COLOR_FG_RGB
 syntax keyword usf_constant AESC_COLOR_BG_RGB
 
+" usfthread
+syn keyword usf_type usf_thread
+syn keyword usf_type usf_threadfunc
+syn keyword usf_type usf_mutex
+syn keyword usf_type usf_cond
+syntax keyword usf_constant THRD_SUCCESS
+syntax keyword usf_constant THRD_NOMEM
+syntax keyword usf_constant THRD_TIMEOUT
+syntax keyword usf_constant THRD_BUSY
+syntax keyword usf_constant THRD_ERROR
+syntax keyword usf_constant MTXINIT_PLAIN
+syntax keyword usf_constant MTXINIT_TIMED
+syntax keyword usf_constant MTXINIT_RECURSIVE
+syntax keyword usf_constant MTXINIT_TIMEDRECURSIVE
+syntax keyword usf_function usf_thrdcreate
+syntax keyword usf_function usf_thrdequal
+syntax keyword usf_function usf_thrdcurrent
+syntax keyword usf_function usf_thrdsleep
+syntax keyword usf_function usf_thrdyield
+syntax keyword usf_function usf_thrdexit
+syntax keyword usf_function usf_thrddetach
+syntax keyword usf_function usf_thrdjoin
+syntax keyword usf_function usf_mtxinit
+syntax keyword usf_function usf_mtxlock
+syntax keyword usf_function usf_mtxtimedlock
+syntax keyword usf_function usf_mtxtrylock
+syntax keyword usf_function usf_mtxunlock
+syntax keyword usf_function usf_mtxdestroy
+syntax keyword usf_function usf_cndinit
+syntax keyword usf_function usf_cndsignal
+syntax keyword usf_function usf_cndbroadcast
+syntax keyword usf_function usf_cndwait
+syntax keyword usf_function usf_cndtimedwait
+syntax keyword usf_function usf_cnddestroy
+
 " General C stuff
+syn keyword StorageClass atomic_flag
+syn keyword StorageClass mtx_t
+syn keyword StorageClass thrd_t
+syn keyword StorageClass cnd_t
 syn keyword Constant INFINITY
 syn keyword Constant CLOCK_MONOTONIC
 syn keyword Constant CLOCK_REALTIME
@@ -3431,3 +3526,4 @@ highlight usf_function cterm=italic
 highlight usf_type ctermfg=120
 highlight usf_constant ctermfg=013 cterm=italic
 highlight usf_keyword ctermfg=011
+highlight usf_warning ctermfg=9

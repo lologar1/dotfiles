@@ -1,4 +1,4 @@
-lzg's C23 coding style (updated 2026-01-31)
+lzg's C23 coding style (updated 2026-03-01)
 
 Project structure
 	README (optional)
@@ -15,6 +15,7 @@ File layout
 	.c source files
 		#include "filename.h"											| Single include + newline
 		#define (global) private macros									| In UPPERCASE; see annex 1.1
+		typedef types													| PascalCase for user-defined types
 		Const public global variables									| In UPPERCASE
 		Public global variables											| Trailing _
 		Const private global variables									| static + UPPERCASE
@@ -26,7 +27,7 @@ File layout
 		Include guard													| Prefer #ifndef
 		#include dependencies											| System, usflib, program
 		#define public macros											| In UPPERCASE; see annex 1.1
-		typedef types													| camelCase for user-defined types
+		typedef types													| PascalCase for user-defined types
 		extern global variables											| Trailing _
 		Public function prototypes (global scope)						| prefix_camelCase
 
@@ -37,7 +38,7 @@ Annex - Further specification
 	1.1 - Macros
 		Macros are always in UPPERCASE.
 		Macro arguments should be prefixed with an underscore.
-		Local macros which take arguments should be prefixed with an underscore.
+		Declarations inside a macro should be in UPPERCASE and suffixed with an underscore.
 		Local macros should be #undef'd when they are no longer used.
 
 	1.2 - Functions
@@ -54,6 +55,7 @@ Annex - Further specification
 	1.4 - Types
 		Always use exact-width integer and floating point types.
 		Do not use C99 bool types; use a signed 32-bit integer instead.
+		Interop with required int type should use the usf_compatibility_int typedef for clarity.
 		Sizes and counts should be represented by a 64-bit unsigned integer.
 		Prefer 64 bits over 32.
 		Prefer unsigned over signed.
@@ -70,7 +72,7 @@ Annex - Further specification
 	1.7 - Whitespace
 		Breaking expressions onto multiple lines add one to the indentation level.
 		Macros and preprocessor directives start at indentation level 0.
-		Pointer types have the '*' star character adjacent to the variable name. (e.g. u64 *arraysz;)
+		Pointer types have the '*' star character adjacent to the variable name. (e.g. u64 *arr;)
 		Casts should have a space between the type and the castee. (e.g. (f32) (xoffset))
 
 	1.8 - Qualifiers
