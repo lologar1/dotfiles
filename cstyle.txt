@@ -1,4 +1,4 @@
-lzg's C23 coding style (updated 2026-03-01)
+lzg's C23 coding style (updated 2026-03-04)
 
 Project structure
 	README (optional)
@@ -61,9 +61,12 @@ Annex - Further specification
 		Prefer unsigned over signed.
 
 	1.5 - Declarations
-		Do not declare and initialize variables in one statement, except for compound literals, globals & statics
 		Declare variables close to their first usage.
 		Prefer assignment inside expressions unless it harms readability.
+		Do not declare and initialize variables in one statement, except for:
+			Compound literals
+			Global and static initializers
+			Effective aliases (e.g. u16 NINPUTS_ = connection->component->ninputs[_BUFFER];)
 
 	1.6 - Blocks
 		'{' is on same line, while '}' is on its own line.
